@@ -60,11 +60,13 @@ def orchestrate_website_generation(municipio_id, place_id = None, recreate_place
     df = df.fillna("")
 
     if place_id:
-        row = df.loc[df["place_id"] == place_id]
+        df = df.loc[df["place_id"] == place_id]
+
+    if len(df) == 0:
+        print("\n\n\nNo such place_id in municipio_id!!")
+
+    for _, row in df.iterrows():
         generate_for_place(row, create_repo, ship_image)
-    else:
-        for _, row in df.iterrows():
-            generate_for_place(row, create_repo, ship_image)
 
 
 
@@ -88,7 +90,7 @@ def main():
     municipio_id = args.mun
     place_id = args.place
     recreate_places = False
-    recreate_restaurants = True
+    recreate_restaurants = False
     create_repo = True
     ship_image = True
 

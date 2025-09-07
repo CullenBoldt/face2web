@@ -2,19 +2,6 @@ from pathlib import Path
 import unicodedata
 import re
 
-def clean_string(s):
-    # Normalize Unicode (NFKD separates accents from letters)
-    normalized = unicodedata.normalize('NFKD', s)
-    # Replace 'ñ' or 'Ñ' with 'n' or 'N' explicitly
-    normalized = normalized.replace('ñ', 'n').replace('Ñ', 'N')
-    # Encode to ASCII bytes, ignoring non-ASCII (removes other accents)
-    ascii_bytes = normalized.encode('ASCII', 'ignore')
-    # Decode back to string
-    ascii_str = ascii_bytes.decode('ASCII')
-    # Remove any remaining special characters (keep letters, numbers, and spaces)
-    clean = re.sub(r'[^A-Za-z0-9 ]+', '', ascii_str)
-    return clean
-
 
 def get_ids_from_row(row):
     return row['municipio_id'], row['cid']
@@ -51,7 +38,7 @@ def get_restaurants_dir():
     return Path("data/restaurants/")
 
 def get_restaurant_path(municipio_id, municipio, provencia):
-    return Path(f"{get_restaurants_dir()}/{municipio_id}_{municipio.replace(' ', '_').replace(",", "_")}_{provencia.replace(' ', '_').replace(",", "_")}.csv")
+    return Path(f"{get_restaurants_dir()}/{str(municipio_id)}_{str(municipio).replace(' ', '_').replace(",", "_")}_{str(provencia).replace(' ', '_').replace(",", "_")}.csv")
 
 def get_cid_output_dir(municipio_id, cid):
     return Path(f"data/web_content/{municipio_id}/{cid}")
