@@ -57,7 +57,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Reservar por WhatsApp",
         whatsappMessage: "Hola, me gustaría hacer una reserva en Polideportivo Municipal Guadassuar."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJz8ThN6WvYQ0RLpWGlj0lW9k"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJz8ThN6WvYQ0RLpWGlj0lW9k"
     },
     footer: {
       copyright: "© 2024 Polideportivo Municipal Guadassuar. Todos los derechos reservados."
@@ -119,7 +119,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Book via WhatsApp",
         whatsappMessage: "Hello, I would like to make a reservation at Polideportivo Municipal Guadassuar."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJz8ThN6WvYQ0RLpWGlj0lW9k"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJz8ThN6WvYQ0RLpWGlj0lW9k"
     },
     footer: {
       copyright: "© 2025 gastronom.io - All rights reserved."

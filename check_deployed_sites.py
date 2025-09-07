@@ -14,7 +14,6 @@ pd.set_option('display.width', 1000)
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 import time
@@ -54,7 +53,7 @@ def create_services_overview():
 
     for file in csv_files:
         # Read CSV
-        df = pd.read_csv(file, usecols=["place_id", "name", "cid"])
+        df = pd.read_csv(file, usecols=["municipio_id", "place_id", "name", "cid"])
         dfs.append(df)
 
     # Concatenate all DataFrames into one
@@ -75,7 +74,7 @@ def update_readme():
     df = pd.read_csv(csv_path)
 
     # Ensure columns exist
-    for col in ["name", "cid", "url", "place_id"]:
+    for col in ["municipio_id", "name", "cid", "url", "place_id"]:
         if col not in df.columns:
             df[col] = ""
 
@@ -83,7 +82,7 @@ def update_readme():
     df['cid'] = df.apply(lambda row: f"[{row['cid']}]({row['url']})" if row['cid'] else "", axis=1)
 
     # Select only the columns we want in the desired order
-    df = df[['name', 'cid', 'place_id', "status"]]
+    df = df[["municipio_id", 'name', 'cid', 'place_id', "status"]]
 
     # Convert to Markdown
     md_table = df.to_markdown(index=False)

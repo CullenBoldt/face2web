@@ -57,7 +57,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Reservar por WhatsApp",
         whatsappMessage: "Hola, me gustaría hacer una reserva en Pub MV."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJv4VCtwKvYQ0RA-2ylyYB2U8"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJv4VCtwKvYQ0RA-2ylyYB2U8"
     },
     footer: {
       copyright: "© 2024 Pub MV. Todos los derechos reservados."
@@ -119,7 +119,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Book via WhatsApp",
         whatsappMessage: "Hello, I would like to make a reservation at Pub MV."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJv4VCtwKvYQ0RA-2ylyYB2U8"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJv4VCtwKvYQ0RA-2ylyYB2U8"
     },
     footer: {
       copyright: "© 2025 gastronom.io - All rights reserved."
