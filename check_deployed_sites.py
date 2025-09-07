@@ -66,34 +66,40 @@ def create_services_overview():
     output_df.to_csv(service_overview_path())
 
 def update_readme():
-
-    # Path to your CSV
+    # Paths
     csv_path = service_with_status_overview_path()
     readme_path = "README.md"
 
+    # Load CSV
     df = pd.read_csv(csv_path)
 
-    # Ensure columns exist
-    for col in ["municipio_id", "name", "cid", "url", "place_id"]:
+    # Ensure required columns exist
+    for col in ["municipio_id", "name", "cid", "url", "place_id", "status"]:
         if col not in df.columns:
             df[col] = ""
 
     # Make 'cid' a clickable Markdown link using 'url'
-    df['cid'] = df.apply(lambda row: f"[{row['cid']}]({row['url']})" if row['cid'] else "", axis=1)
+    df["cid"] = df.apply(
+        lambda row: f'<a href="{row["url"]}">{row["cid"]}</a>' if row["cid"] else "",
+        axis=1,
+    )
 
-    # Select only the columns we want in the desired order
-    df = df[["municipio_id", 'name', 'cid', 'place_id', "status"]]
+    # Select only the desired columns
+    df = df[["municipio_id", "name", "cid", "place_id", "status"]]
 
-    # Convert to Markdown
-    md_table = df.to_markdown(index=False)
+    # Convert DataFrame to an HTML table with smaller font
+    html_table = df.to_html(index=False, escape=False, border=0)
+    html_table = f'<div style="font-size: 12px">\n{html_table}\n</div>'
 
-    # Wrap with a section header
-    md_content = f"## Deployment Log\n\n{md_table}\n"
+    # Wrap with header
+    md_content = f"""## Deployment Log
+
+        {html_table}
+            """
 
     # Write to README.md
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(md_content)
-
 
 def authenticate(driver):
     """
