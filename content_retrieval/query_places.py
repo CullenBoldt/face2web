@@ -4,35 +4,47 @@ import requests
 from content_retrieval.create_places_table import load_places_table
 from bs4 import BeautifulSoup
 
-from libs.utils.auth import read_api_key
+from libs.utils.auth import read_geocode_api_key, read_places_api_key
 from libs.utils.cid_hash import cid_hash_from_place_id
 from libs.utils.paths import get_restaurant_path
 
 
 
 
-def query_place(municipio, provencia, municipio_id):
+def query_place(municipio, provincia, municipio_id, min_lang):
 
     print(f"\n\n\n\nPROCESSING ID {municipio_id}\n\n\n\n")
 
     results_all = []
 
-    API_KEY = read_api_key()
 
     TARGET_SUBSTRING = "facebook"  # Change this to your desired substring
 
-    # Step 1: Search for restaurants in the given municipality and province
-    search_url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
-    search_params = {
-        "query": f"restaurantes en {municipio}, {provencia}",
-        "key": API_KEY
+    url = "https://maps.googleapis.com/maps/api/geocode/json"
+    params = {
+        "address": f"{municipio}, {provincia}, España",
+        "key": read_geocode_api_key()
     }
+
+    resp = requests.get(url, params=params).json()
+    location = resp["results"][0]["geometry"]["location"]
+    lat, lng = location["lat"], location["lng"]
+
+    # Step 1: Search for restaurants in the given municipality and province
+    search_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
+    search_params = {
+        "type":"restaurant",
+        "key": read_places_api_key(),
+        "location": f"{lat},{lng}",  # municipio centroid
+        "radius": 5000,
+    }
+
 
     while True:
         search_response = requests.get(search_url, params=search_params).json()
 
         # Step 2: Get website URLs and Google Maps URLs using place_id
-        print("Number of restaurants in this batch: ", len(search_response.get("results", [])))
+        print("\n\n\nNumber of restaurants in this batch: ", len(search_response.get("results", [])))
         for place in search_response.get("results", []):
 
             place_id = place.get("place_id")
@@ -43,7 +55,7 @@ def query_place(municipio, provencia, municipio_id):
                 "place_id": place_id,
                 "fields": "name,business_status,website,adr_address,formatted_phone_number,opening_hours,rating,reviews,photos",
                 "language": "es",
-                "key": API_KEY
+                "key": read_places_api_key()
             }
             details_response = requests.get(details_url, params=details_params).json()
             result = details_response.get("result", {})
@@ -62,8 +74,9 @@ def query_place(municipio, provencia, municipio_id):
                     result['maps_url'] = maps_url
                     result['municipio_id'] = municipio_id
                     result['municipio'] = municipio
-                    result['provencia'] = provencia
+                    result['provincia'] = provincia
                     result['website_url'] = website
+                    result['min_lang'] = min_lang
 
                     try:
                         soup = BeautifulSoup(result['adr_address'], "html.parser")
@@ -97,7 +110,7 @@ def query_place(municipio, provencia, municipio_id):
             time.sleep(2)
             search_params = {
                 "pagetoken": next_page_token,
-                "key": API_KEY
+                "key": read_places_api_key()
             }
         else:
             break
@@ -106,8 +119,8 @@ def query_place(municipio, provencia, municipio_id):
     results_df = pd.DataFrame(results_all)
 
     output_columns = [
-        "cid",'name','place_id','website_url','business_status',"formatted_phone_number",
-        "maps_url","municipio_id","municipio","provencia","adr_street_address",
+        "cid",'name', "min_lang", 'place_id','website_url','business_status',"formatted_phone_number",
+        "maps_url","municipio_id","municipio","provincia","adr_street_address",
         "adr_postal_code","adr_locality","adr_region","adr_country_name",
         "opening_hours_lunes","opening_hours_martes","opening_hours_miércoles",
         "opening_hours_jueves","opening_hours_viernes","opening_hours_sábado",
@@ -121,7 +134,7 @@ def query_place(municipio, provencia, municipio_id):
     # Fill missing values in existing columns
     results_df = results_df.fillna("")
 
-    output_path = get_restaurant_path(municipio_id, municipio, provencia)
+    output_path = get_restaurant_path(municipio_id, municipio, provincia)
 
     results_df[output_columns].to_csv(
         output_path,
@@ -135,10 +148,11 @@ def main():
 
     for i in range(1515, 1516):
         municipio = places.iloc[i]['municipio']
-        provencia = places.iloc[i]['provincia']
+        provincia = places.iloc[i]['provincia']
         municipio_id = places.iloc[i]['municipio_id']
+        min_lang = places.iloc[i]['min_lang']
 
-        query_place(municipio, provencia, municipio_id)
+        query_place(municipio, provincia, municipio_id, min_lang)
 
 if __name__ == "__main__":
     main()

@@ -20,7 +20,17 @@ def create_places_table():
             # Extract base filename (without extension)
             provincia_name = file.stem.replace("_", " ")
 
-            if len(df.columns) > 2:
+            if provincia_name in ['Álava', "Gipuzkoa", 'Biscay', 'Navarre']:
+                df['min_lang'] = 'eu'
+            elif provincia_name in ['Balearic Islands', 'Cataluña', 'Valencia', "Castellón", "Alicante"]:
+                df['min_lang'] = 'ca'
+            elif provincia_name in ['A Coruña', "Lugo", "Ourense", 'Pontevedra']:
+                df['min_lang'] = 'gl'
+            else:
+                df['min_lang'] = "none"
+
+
+            if len(df.columns) > 3:
                 print(file)
                 print(len(df.columns))
 
@@ -39,12 +49,11 @@ def create_places_table():
     # Concatenate all into one DataFrame
     if all_dfs:
         combined_df = pd.concat(all_dfs, ignore_index=True)
-
-        combined_df["Name"] = combined_df["Name"].str.replace('/', " ")
+        combined_df["Name"] = combined_df["Name"].str.replace('/', " ").replace("†", '')
 
         print(combined_df['Population'].sum())
 
-        combined_df[["Name", "provincia", "Population"]].rename({"Name":"municipio", "Population": "poblacion"}, axis=1).sort_values(by='poblacion', ascending =False).reset_index(drop=True).to_csv(get_places_table_path(), index_label="municipio_id")
+        combined_df[["Name", "provincia", "Population", "min_lang"]].rename({"Name":"municipio", "Population": "poblacion"}, axis=1).sort_values(by='poblacion', ascending =False).reset_index(drop=True).to_csv(get_places_table_path(), index_label="municipio_id")
         print(f"\n📊 Combined DataFrame shape: {combined_df.shape}")
     else:
         print("⚠️ No CSV files found in places/raw")

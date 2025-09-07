@@ -1,6 +1,68 @@
 import { Content, Language } from '../types';
 
 export const content: { [key in Language]: Content } = {
+  gl: {
+    header: {
+      logo: "A Casiña da Ponte",
+      nav: {
+        home: "Inicio",
+        menu: "Menú",
+        about: "Sobre nós",
+        contact: "Contacto"
+      }
+    },
+    hero: {
+      title: "Sabor tradicional no corazón de Castro de Rei",
+      subtitle: "Descubre a auténtica cociña galega.",
+      image: "https://storage.googleapis.com/gastronomio_images/1132/lfegcakvoewtzslfhrkxnuidafvgso/photo_1.jpg",
+      cta: "Reservar mesa"
+    },
+    menu: {
+      title: "O noso Menú",
+      categories: {
+        all: "Todos",
+        appetizers: "Petiscos",
+        mainCourses: "Pratos principais",
+        desserts: "Sobremesas",
+        drinks: "Bebidas"
+      }
+    },
+    about: {
+      title: "A nosa historia",
+      image: "https://storage.googleapis.com/gastronomio_images/1132/lfegcakvoewtzslfhrkxnuidafvgso/photo_2.jpg",
+      paragraph1: "En A Casiña da Ponte, estamos orgullosos de ofrecer unha experiencia culinaria baseada na tradición e nos produtos da nosa terra. Somos un negocio familiar dedicado a traer os sabores auténticos da cociña galega á súa mesa.",
+      paragraph2: "Situado en Castro de Rei, Lugo, o noso restaurante é un punto de encontro para amigos e familias. Cada prato está preparado con coidado, seguindo receitas transmitidas de xeración en xeración, garantindo unha comida caseira e inesquecible."
+    },
+    contact: {
+      title: "Ponte en contacto",
+      address: "Enderezo",
+      addressValue: "Rúa Poeta Crecente Vega, 15, 27250 Castro de Rei Lugo",
+      openingHours: "Horario de apertura",
+      hours: {
+        lunes: "Luns: Cerrado",
+        martes: "Martes: 8:00–17:00",
+        miercoles: "Mércores: 8:00–17:00",
+        jueves: "Xoves: 8:00–17:00",
+        viernes: "Venres: 8:00–23:30",
+        sabado: "Sábado: 8:00–23:30",
+        domingo: "Domingo: 8:00–17:00"
+      },
+      phone: "Teléfono",
+      phoneValue: "622 74 36 50",
+      whatsappNumber: "622 74 36 50",
+      email: "Correo electrónico",
+      emailValue: "reservas@gastronom.io",
+      reservation: {
+        title: "Facer unha reserva",
+        submit: "Reservar por WhatsApp",
+        whatsappMessage: "Ola, gustaríame facer unha reserva en A Casiña da Ponte."
+      },
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJ4XXCdAC_MQ0RwsLf9Za9Rjc"
+    },
+    footer: {
+      copyright: "© 2024 A Casiña da Ponte. Todos os dereitos reservados."
+    }
+  },
   es: {
     header: {
       logo: "A Casiña da Ponte",

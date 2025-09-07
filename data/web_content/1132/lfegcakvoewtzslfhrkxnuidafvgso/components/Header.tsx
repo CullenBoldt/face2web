@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderProps> = ({ content, language, setLanguage }
     <header className="bg-background/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md">
       <div className="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
         <a href="#home" className="text-3xl font-serif font-bold text-accent">{content.logo}</a>
-        
+
         <div className="flex items-center">
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map(([key, text]) => (
@@ -25,6 +25,12 @@ export const Header: React.FC<HeaderProps> = ({ content, language, setLanguage }
           </nav>
 
           <div className="hidden md:flex items-center ml-8 space-x-2 border-l border-gray-700 pl-6">
+            <button 
+              onClick={() => setLanguage('gl')} 
+              className={`px-2 py-1 text-sm rounded-md transition-colors ${language === 'gl' ? 'text-background bg-accent' : 'text-secondary hover:text-primary'}`}
+              aria-pressed={language === 'gl'}>
+              GL
+            </button>
             <button 
               onClick={() => setLanguage('es')} 
               className={`px-2 py-1 text-sm rounded-md transition-colors ${language === 'es' ? 'text-background bg-accent' : 'text-secondary hover:text-primary'}`}
@@ -50,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({ content, language, setLanguage }
           </div>
         </div>
       </div>
-      
+
       {isMenuOpen && (
         <div className="md:hidden bg-background">
           <nav className="flex flex-col items-center px-6 pt-2 pb-4 space-y-1">
@@ -58,6 +64,12 @@ export const Header: React.FC<HeaderProps> = ({ content, language, setLanguage }
               <a key={key} href={`#${key}`} onClick={() => setIsMenuOpen(false)} className="block w-full text-center py-3 text-lg text-primary hover:text-accent transition-colors duration-300">{text}</a>
             ))}
              <div className="flex items-center w-full justify-center mt-4 space-x-4 border-t border-gray-700 pt-4">
+              <button 
+                onClick={() => { setLanguage('gl'); setIsMenuOpen(false); }} 
+                className={`px-4 py-2 text-sm rounded-md transition-colors ${language === 'gl' ? 'text-background bg-accent' : 'text-secondary hover:text-primary'}`}
+              >
+                GL
+              </button>
               <button 
                 onClick={() => { setLanguage('es'); setIsMenuOpen(false); }} 
                 className={`px-4 py-2 text-sm rounded-md transition-colors ${language === 'es' ? 'text-background bg-accent' : 'text-secondary hover:text-primary'}`}
@@ -70,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({ content, language, setLanguage }
               >
                 English
               </button>
-            </div>
+             </div>
           </nav>
         </div>
       )}

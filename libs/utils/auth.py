@@ -1,8 +1,13 @@
-from libs.utils.paths import get_api_key_path, get_website_password_path, get_embed_map_key_path
+from libs.utils.paths import get_places_api_key_path, get_website_password_path, get_embed_map_key_path, \
+    get_geocode_api_key_path
 
 
-def read_api_key():
-    with open(get_api_key_path(), 'r') as file:
+def read_places_api_key():
+    with open(get_places_api_key_path(), 'r') as file:
+        return file.read().strip()
+
+def read_geocode_api_key():
+    with open(get_geocode_api_key_path(), 'r') as file:
         return file.read().strip()
 
 def read_website_password():

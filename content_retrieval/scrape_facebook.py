@@ -80,10 +80,10 @@ def scrape_customer_data(municipio_id, headless):
     places = load_places_table()
 
     municipio = places.iloc[municipio_id]['municipio']
-    provencia = places.iloc[municipio_id]['provincia']
+    provincia = places.iloc[municipio_id]['provincia']
     municipio_id = places.iloc[municipio_id]['municipio_id']
 
-    restaurants = pd.read_csv(get_restaurant_path(municipio_id, municipio, provencia))
+    restaurants = pd.read_csv(get_restaurant_path(municipio_id, municipio, provincia))
 
     customer_df = pd.read_csv(get_customer_csv())
     restaurants = restaurants[~restaurants['cid'].isin(list(customer_df['cid']))]
@@ -130,4 +130,3 @@ def scrape_customer_data(municipio_id, headless):
     customer_df = pd.concat([customer_df, new_rows], ignore_index=True)
     customer_df.to_csv(get_customer_csv(), index=False)
 
-scrape_customer_data(2480, True)

@@ -22,8 +22,11 @@ def create_dirs(row):
 def get_template_app_dir():
     return Path("templates/app_template")
 
-def get_api_key_path():
-    return Path('secrets/api_key.txt')
+def get_places_api_key_path():
+    return Path('secrets/places_api_key')
+
+def get_geocode_api_key_path():
+    return Path('secrets/geocode_api_key')
 
 def get_places_dir():
     return Path("data/places")
@@ -37,11 +40,14 @@ def get_places_table_path():
 def get_restaurants_dir():
     return Path("data/restaurants/")
 
-def get_restaurant_path(municipio_id, municipio, provencia):
-    return Path(f"{get_restaurants_dir()}/{str(municipio_id)}_{str(municipio).replace(' ', '_').replace(",", "_")}_{str(provencia).replace(' ', '_').replace(",", "_")}.csv")
+def get_restaurant_path(municipio_id, municipio, provincia):
+    return Path(f"{get_restaurants_dir()}/{str(municipio_id)}_{str(municipio).replace(' ', '_').replace(",", "_")}_{str(provincia).replace(' ', '_').replace(",", "_")}.csv")
 
 def get_cid_output_dir(municipio_id, cid):
     return Path(f"data/web_content/{municipio_id}/{cid}")
+
+def get_cid_header_path(municipio_id, cid):
+    return Path(f"{get_cid_output_dir(municipio_id, cid)}/components/Header.tsx")
 
 def get_cid_menu_path(municipio_id, cid):
     return Path(f"{get_cid_output_dir(municipio_id, cid)}/data/menuData.ts")

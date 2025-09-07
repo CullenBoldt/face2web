@@ -4,16 +4,18 @@ import argparse
 
 from check_deployed_sites import create_services_overview, check_deployed_services, update_readme
 from content_release.build_and_ship_image import build_and_ship
+from content_release.generate_header import generate_header_file
 from content_release.image_uploader import upload_images
 from content_retrieval.create_places_table import load_places_table, create_places_table
 from content_retrieval.image_downloader import download_images
 from content_retrieval.query_places import query_place
 from content_retrieval.read_menu_sheet import download_google_sheet, save_menu_ts
 from content_retrieval.inject_content import prepare_content_dict, save_content_ts
-from content_retrieval.scrape_facebook import scrape_emails
+from content_retrieval.scrape_facebook import scrape_customer_data
 from libs.utils.adapt_yaml import apply_substitutions
 from libs.utils.move_app_data import move_app_data
-from libs.utils.paths import create_dirs, get_restaurant_path
+from libs.utils.paths import create_dirs, get_restaurant_path, get_cid_header_path
+
 
 def generate_for_place(row, create_repo, ship_image):
     create_dirs(row)
@@ -36,6 +38,7 @@ def generate_for_place(row, create_repo, ship_image):
 
     move_app_data(row)
     apply_substitutions(row)
+    generate_header_file(row)
 
     build_and_ship(row, create_repo, ship_image)
 
@@ -47,14 +50,15 @@ def orchestrate_website_generation(municipio_id, place_id = None, recreate_place
     places = load_places_table()
 
     municipio = places.iloc[municipio_id]['municipio']
-    provencia = places.iloc[municipio_id]['provincia']
+    provincia = places.iloc[municipio_id]['provincia']
     municipio_id = places.iloc[municipio_id]['municipio_id']
+    min_lang = places.iloc[municipio_id]['min_lang']
 
     if recreate_restaurants:
-        municipio_path = query_place(municipio, provencia, municipio_id)
+        municipio_path = query_place(municipio, provincia, municipio_id, min_lang)
 
     else:
-        municipio_path = get_restaurant_path(municipio_id, municipio, provencia)
+        municipio_path = get_restaurant_path(municipio_id, municipio, provincia)
 
     df = pd.read_csv(municipio_path)
     df["email"] = "reservas@gastronom.io"
@@ -90,8 +94,8 @@ def main():
     # Use parsed args
     municipio_id = args.mun
     place_id = args.place
-    recreate_places = False
-    recreate_restaurants = False
+    recreate_places = True
+    recreate_restaurants = True
     create_repo = True
     ship_image = True
     update_status = True
@@ -106,7 +110,7 @@ def main():
         check_deployed_services()
         update_readme()
 
-    scrape_emails(municipio_id, True)
+    scrape_customer_data(municipio_id, True)
 
 if __name__ == "__main__":
     main()
