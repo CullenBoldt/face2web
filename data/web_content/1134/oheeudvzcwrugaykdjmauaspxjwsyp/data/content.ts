@@ -57,7 +57,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Reservar por WhatsApp",
         whatsappMessage: "Hola, me gustaría hacer una reserva en Pub Richi."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJPUXUe_-vYQ0RH2qzPXL8nOM"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJPUXUe_-vYQ0RH2qzPXL8nOM"
     },
     footer: {
       copyright: "© 2024 Pub Richi. Todos los derechos reservados."
@@ -119,7 +119,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Book via WhatsApp",
         whatsappMessage: "Hello, I would like to make a reservation at Pub Richi."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJPUXUe_-vYQ0RH2qzPXL8nOM"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJPUXUe_-vYQ0RH2qzPXL8nOM"
     },
     footer: {
       copyright: "© 2025 gastronom.io - All rights reserved."

@@ -92,6 +92,10 @@ def get_cid_repo_name(row):
 def service_overview_path():
     return Path("data/services/service_overview.csv")
 
+def service_with_status_overview_path():
+    return Path("data/services/service_with_status_overview.csv")
+
+
 def get_website_password_path():
     return Path("secrets/website_password")
 

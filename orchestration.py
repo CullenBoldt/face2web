@@ -61,7 +61,7 @@ def orchestrate_website_generation(place_index, recreate_places, recreate_restau
 
 
 def main():
-    place_index = 1134
+    place_index = 1132
     recreate_places = False
     recreate_restaurants = False
     create_repo = False
