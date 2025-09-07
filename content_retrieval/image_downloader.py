@@ -20,7 +20,7 @@ def download_images(row, image_count):
         for idx, p in enumerate(photos, start=1):
             ref = p.get("photo_reference")
             if ref:
-                url = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference={ref}&key={read_api_key()}"
+                url = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=1600&photo_reference={ref}&key={read_api_key()}"
 
                 local_file = get_cid_image_path(municipio_id, cid, idx)
 
