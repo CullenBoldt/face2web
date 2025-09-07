@@ -88,3 +88,6 @@ def get_website_password_path():
 
 def get_embed_map_key_path():
     return Path("secrets/embed_map_key")
+
+def get_customer_csv():
+    return Path("data/marketing/customer_info.csv")

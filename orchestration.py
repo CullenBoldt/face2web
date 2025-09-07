@@ -10,6 +10,7 @@ from content_retrieval.image_downloader import download_images
 from content_retrieval.query_places import query_place
 from content_retrieval.read_menu_sheet import download_google_sheet, save_menu_ts
 from content_retrieval.inject_content import prepare_content_dict, save_content_ts
+from content_retrieval.scrape_facebook import scrape_emails
 from libs.utils.adapt_yaml import apply_substitutions
 from libs.utils.move_app_data import move_app_data
 from libs.utils.paths import create_dirs, get_restaurant_path
@@ -93,15 +94,19 @@ def main():
     recreate_restaurants = False
     create_repo = True
     ship_image = True
+    update_status = True
 
     # Call your functions
     orchestrate_website_generation(
         municipio_id, place_id, recreate_places, recreate_restaurants, create_repo, ship_image
     )
 
-    create_services_overview()
-    check_deployed_services()
-    update_readme()
+    if update_status:
+        create_services_overview()
+        check_deployed_services()
+        update_readme()
+
+    scrape_emails(municipio_id, True)
 
 if __name__ == "__main__":
     main()

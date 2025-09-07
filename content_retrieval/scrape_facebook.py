@@ -1,36 +1,51 @@
 import re
+import time
 
-import requests
+import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Setup Chrome
-options = webdriver.ChromeOptions()
-options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                     "AppleWebKit/537.36 (KHTML, like Gecko) "
-                     "Chrome/116.0.0.0 Safari/537.36")
+from content_retrieval.create_places_table import load_places_table
+from libs.utils.paths import get_restaurant_path, get_customer_csv
 
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-driver.get("https://www.facebook.com/")
-urls = ["https://m.facebook.com/Restaurante-Puerta-de-los-Montes-111185337348004",
-        "https://m.facebook.com/menjarperaportar?ref=bookmarks",
-        "https://www.facebook.com/acasadopulpo/",
-        'https://m.facebook.com/erkiaga2016',
-        "https://www.facebook.com/elduettocaldesdemalavella",
-        "http://www.facebook.com/CASAROSADECALDES",
-        'https://www.facebook.com/restaurantserinya/',
-        "https://www.facebook.com/LaVostraPizza/",
-        "http://www.facebook.com/labodegaguaro"]
+def accept_cookies(driver):
+    time.sleep(2)
 
-for url in urls:
+    allow_cookies = driver.find_element(By.XPATH,
+                                        '/html/body/div[3]/div[2]/div/div/div/div/div[3]/div[2]/div/div[2]/div[1]/div/div[1]/div/span/span')
+    allow_cookies.click()
+    time.sleep(.5)
+
+
+def login(driver):
+
+    time.sleep(2)
+    email = driver.find_element(By.XPATH,
+                                '/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div[1]/input')
+    pw = driver.find_element(By.XPATH,
+                             '/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div[2]/div/input')
+    button = driver.find_element(By.XPATH,
+                                 '/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[2]/button')
+    email.send_keys('josefaceille@gmail.com')
+    pw.send_keys('*?Vbwcv.Q6*M7?Q')
+
+    time.sleep(.5)
+    button.click()
+
+    time.sleep(4)
+
+def get_email(driver, row):
+    emails = []
+    url = row['website_url']
+
     driver.get(url)
 
     # Optional: wait for the page to load
-    import time
-    time.sleep(5)
+    time.sleep(3)
 
     # Get the full HTML of the page
     html = driver.page_source
@@ -40,44 +55,79 @@ for url in urls:
     # Find the div with the attribute data-pagelet="ProfileTilesFeed_0"
     section = soup.find("div", {"data-pagelet": "ProfileTilesFeed_0"})
 
-    emails = []
     if section:
         text = section.get_text(separator=" ", strip=True)  # get all visible text
         emails = re.findall(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", text)
 
-    photo_urls = []
-    cover_link = soup.find(attrs={"aria-label": "View profile cover photo"})
-    if cover_link:
-        if cover_link.name == "a" and cover_link.get("href"):
-            photo_urls = [cover_link["href"]]
+    return emails
+
+def start_driver(headless):
+    options = webdriver.ChromeOptions()
+    if headless:
+        options.add_argument("--headless")
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                         "AppleWebKit/537.36 (KHTML, like Gecko) "
+                         "Chrome/116.0.0.0 Safari/537.36")
+
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+    driver.get("https://www.facebook.com/")
+
+    return driver
+
+def scrape_customer_data(municipio_id, headless):
+
+    places = load_places_table()
+
+    municipio = places.iloc[municipio_id]['municipio']
+    provencia = places.iloc[municipio_id]['provincia']
+    municipio_id = places.iloc[municipio_id]['municipio_id']
+
+    restaurants = pd.read_csv(get_restaurant_path(municipio_id, municipio, provencia))
+
+    customer_df = pd.read_csv(get_customer_csv())
+    restaurants = restaurants[~restaurants['cid'].isin(list(customer_df['cid']))]
+    if any(["facebook" in i for i in list(restaurants['website_url'].astype(str))]):
+        driver = start_driver(headless)
+        accept_cookies(driver)
     else:
-        print("No element with aria-label='View profile cover photo' found")
+        driver = None
 
+    customer_output_list = []
+    for _, row in restaurants.iterrows():
+        print(f"Processing {row['cid']}")
+        emails = []
+        user_info = {}
+        user_info['name'] = row['name']
+        if "facebook" in str(row['website_url']):
+            emails = get_email(driver, row)
 
-    print(emails)
-    print(photo_urls)
+        if emails:
+            print(emails[0])
+            user_info['email'] = emails[0]
+        else:
+            user_info['email'] = ""
+        user_info['cid'] = row['cid']
+        user_info['website_url'] = row['website_url']
+        user_info['phone_number'] = row['formatted_phone_number']
+        user_info['municipio_id'] = row['municipio_id']
+        user_info['adr_street_address'] = row['adr_street_address']
+        user_info['adr_postal_code'] = row['adr_postal_code']
+        user_info['adr_locality'] = row['adr_locality']
+        user_info['adr_region'] = row['adr_region']
+        user_info['adr_country_name'] = row['adr_country_name']
+        customer_output_list.append(user_info)
 
+    if driver:
+        driver.close()
 
+    new_customer_df = pd.DataFrame(customer_output_list)
 
+    # Find rows in df_b that are not in df_a (based on all columns)
+    new_rows = pd.concat([new_customer_df, customer_df, customer_df]).drop_duplicates(keep=False)
 
+    # Append them to df_a
+    customer_df = pd.concat([customer_df, new_rows], ignore_index=True)
+    customer_df.to_csv(get_customer_csv(), index=False)
 
-
-def download_from_url(url, driver):
-
-    url = "https://www.facebook.com/photo/?fbid=567000405120162&set=a.567000371786832"
-
-    driver.get(url)
-
-    time.sleep(3)
-    soup = BeautifulSoup(html, "html.parser")
-
-    # Find all elements with data-visualcompletion="media-vc-image"
-    media_viewer = soup.find("div", {"data-pagelet": "MediaViewerPhoto"})
-
-
-    image_url = None
-    if media_viewer:
-        # Look for the first <img> inside this div
-        img_tag = media_viewer.find("img")
-        if img_tag and img_tag.get("src"):
-            image_url = img_tag["src"]
+scrape_customer_data(2480, True)
