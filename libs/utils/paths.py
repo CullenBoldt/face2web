@@ -88,3 +88,6 @@ def get_cid_display_name(row):
 
 def get_cid_repo_name(row):
     return f"{get_cid_display_name(row)}-repo"
+
+def service_overview_path():
+    return "data/services/service_overview.csv"
