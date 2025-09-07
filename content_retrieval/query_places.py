@@ -4,13 +4,12 @@ import requests
 from content_retrieval.create_places_table import load_places_table
 from bs4 import BeautifulSoup
 
+from libs.utils.auth import read_api_key
 from libs.utils.cid_hash import cid_hash_from_place_id
-from libs.utils.paths import get_api_key_path, get_restaurant_path
+from libs.utils.paths import get_restaurant_path
 
 
-def read_api_key():
-    with open(get_api_key_path(), 'r') as file:
-        return file.read().strip()
+
 
 def query_place(municipio, provencia, municipio_id):
 
@@ -115,8 +114,12 @@ def query_place(municipio, provencia, municipio_id):
         "opening_hours_domingo", "rating","reviews","photos"
     ]
 
-    if not all([i in results_df.columns for i in output_columns]):
-        output_columns = results_df.columns
+    for col in output_columns:
+        if col not in results_df.columns:
+            results_df[col] = ""  # add column with empty strings
+
+    # Fill missing values in existing columns
+    results_df = results_df.fillna("")
 
     output_path = get_restaurant_path(municipio_id, municipio, provencia)
 

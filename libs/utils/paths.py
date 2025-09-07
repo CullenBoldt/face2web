@@ -90,4 +90,10 @@ def get_cid_repo_name(row):
     return f"{get_cid_display_name(row)}-repo"
 
 def service_overview_path():
-    return "data/services/service_overview.csv"
+    return Path("data/services/service_overview.csv")
+
+def get_website_password_path():
+    return Path("secrets/website_password")
+
+def get_embed_map_key_path():
+    return Path("secrets/embed_map_key")

@@ -1,7 +1,7 @@
 
 import pandas as pd
 
-from check_deployed_sites import create_services_overview
+from check_deployed_sites import create_services_overview, check_deployed_services
 from content_release.build_and_ship_image import build_and_ship
 from content_release.image_uploader import upload_images
 from content_retrieval.create_places_table import load_places_table, create_places_table
@@ -32,6 +32,7 @@ def orchestrate_website_generation(place_index, recreate_places, recreate_restau
 
     df = pd.read_csv(municipio_path)
     df["email"] = "reservas@gastronom.io"
+    df = df.fillna("")
 
     for index, row in df.iterrows():
         create_dirs(row)
@@ -60,14 +61,15 @@ def orchestrate_website_generation(place_index, recreate_places, recreate_restau
 
 
 def main():
-    place_index = 1132
+    place_index = 1134
     recreate_places = False
-    recreate_restaurants = True
-    create_repo = True
+    recreate_restaurants = False
+    create_repo = False
     ship_image = True
     orchestrate_website_generation(place_index, recreate_places, recreate_restaurants, create_repo, ship_image)
 
     create_services_overview()
+    check_deployed_services()
 
 if __name__ == "__main__":
     main()

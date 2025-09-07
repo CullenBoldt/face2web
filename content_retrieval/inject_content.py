@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 import re
 
+from libs.utils.auth import embed_map_key
 from libs.utils.paths import get_cid_content_path, get_ids_from_row, get_bucket_image_path
 
 
@@ -58,7 +59,7 @@ def save_content_ts(content_dict: dict, row):
 
 def prepare_content_dict(row):
 
-    embed_url = f"https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:{row['place_id']}"
+    embed_url = f"https://www.google.com/maps/embed/v1/place?key={embed_map_key()}&q=place_id:{row['place_id']}"
 
     return {
         "es": {
