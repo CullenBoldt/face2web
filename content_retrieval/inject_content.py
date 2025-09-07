@@ -58,7 +58,7 @@ def save_content_ts(content_dict: dict, row):
 
 def prepare_content_dict(row):
 
-    print("\n\n\nURL : ", f"https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:{row['cid']}\n\n\n\n")
+    embed_url = f"https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:{row['place_id']}"
 
     return {
         "es": {
@@ -117,7 +117,7 @@ def prepare_content_dict(row):
                     "submit": "Reservar por WhatsApp",
                     "whatsappMessage": f"Hola, me gustaría hacer una reserva en {row['name']}.",
                 },
-                "embed_url": f"https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:{row['cid']}"
+                "embed_url": embed_url
             },
             "footer": {
                 "copyright": f"© 2024 {row['name']}. Todos los derechos reservados.",
@@ -179,7 +179,7 @@ def prepare_content_dict(row):
                     "submit": "Book via WhatsApp",
                     "whatsappMessage": f"Hello, I would like to make a reservation at {row['name']}.",
                 },
-                "embed_url" : f"https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:{row['cid']}"
+                "embed_url" : embed_url
             },
             "footer": {
                 "copyright": "© 2025 gastronom.io - All rights reserved.",
