@@ -57,7 +57,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Reservar por WhatsApp",
         whatsappMessage: "Hola, me gustaría hacer una reserva en Azúmara Café & Bar."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:whzbyiosmbhhykuewzvoxdwuttdysl"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJn6Zp-_--MQ0ROgzWShXfxf8"
     },
     footer: {
       copyright: "© 2024 Azúmara Café & Bar. Todos los derechos reservados."
@@ -119,7 +119,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Book via WhatsApp",
         whatsappMessage: "Hello, I would like to make a reservation at Azúmara Café & Bar."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:whzbyiosmbhhykuewzvoxdwuttdysl"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJn6Zp-_--MQ0ROgzWShXfxf8"
     },
     footer: {
       copyright: "© 2025 gastronom.io - All rights reserved."
