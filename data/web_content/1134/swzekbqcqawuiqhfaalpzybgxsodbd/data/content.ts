@@ -57,7 +57,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Reservar por WhatsApp",
         whatsappMessage: "Hola, me gustaría hacer una reserva en Pizzería Da Vito."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJAzTRpAOvYQ0R-xfqnXr6v34"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJAzTRpAOvYQ0R-xfqnXr6v34"
     },
     footer: {
       copyright: "© 2024 Pizzería Da Vito. Todos los derechos reservados."
@@ -119,7 +119,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Book via WhatsApp",
         whatsappMessage: "Hello, I would like to make a reservation at Pizzería Da Vito."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJAzTRpAOvYQ0R-xfqnXr6v34"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJAzTRpAOvYQ0R-xfqnXr6v34"
     },
     footer: {
       copyright: "© 2025 gastronom.io - All rights reserved."

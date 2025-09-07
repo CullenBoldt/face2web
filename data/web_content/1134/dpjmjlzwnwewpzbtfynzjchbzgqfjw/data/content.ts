@@ -48,8 +48,8 @@ export const content: { [key in Language]: Content } = {
         domingo: "Domingo: 9:00–1:30"
       },
       phone: "Teléfono",
-      phoneValue: nan,
-      whatsappNumber: nan,
+      phoneValue: "",
+      whatsappNumber: "",
       email: "Correo Electrónico",
       emailValue: "reservas@gastronom.io",
       reservation: {
@@ -57,7 +57,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Reservar por WhatsApp",
         whatsappMessage: "Hola, me gustaría hacer una reserva en Pub Espai."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJkdgCOa6vYQ0Rj3h9F4cJHRQ"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJkdgCOa6vYQ0Rj3h9F4cJHRQ"
     },
     footer: {
       copyright: "© 2024 Pub Espai. Todos los derechos reservados."
@@ -110,8 +110,8 @@ export const content: { [key in Language]: Content } = {
         domingo: "Sunday: 9:00–1:30"
       },
       phone: "Phone",
-      phoneValue: nan,
-      whatsappNumber: nan,
+      phoneValue: "",
+      whatsappNumber: "",
       email: "Email",
       emailValue: "reservas@gastronom.io",
       reservation: {
@@ -119,7 +119,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Book via WhatsApp",
         whatsappMessage: "Hello, I would like to make a reservation at Pub Espai."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJkdgCOa6vYQ0Rj3h9F4cJHRQ"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJkdgCOa6vYQ0Rj3h9F4cJHRQ"
     },
     footer: {
       copyright: "© 2025 gastronom.io - All rights reserved."

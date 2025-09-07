@@ -48,8 +48,8 @@ export const content: { [key in Language]: Content } = {
         domingo: "Domingo: Cerrado"
       },
       phone: "Teléfono",
-      phoneValue: nan,
-      whatsappNumber: nan,
+      phoneValue: "",
+      whatsappNumber: "",
       email: "Correo Electrónico",
       emailValue: "reservas@gastronom.io",
       reservation: {
@@ -57,7 +57,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Reservar por WhatsApp",
         whatsappMessage: "Hola, me gustaría hacer una reserva en Capri Pub."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJD9oTdMevYQ0RzLo6topByaw"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJD9oTdMevYQ0RzLo6topByaw"
     },
     footer: {
       copyright: "© 2024 Capri Pub. Todos los derechos reservados."
@@ -110,8 +110,8 @@ export const content: { [key in Language]: Content } = {
         domingo: "Sunday: Closed"
       },
       phone: "Phone",
-      phoneValue: nan,
-      whatsappNumber: nan,
+      phoneValue: "",
+      whatsappNumber: "",
       email: "Email",
       emailValue: "reservas@gastronom.io",
       reservation: {
@@ -119,7 +119,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Book via WhatsApp",
         whatsappMessage: "Hello, I would like to make a reservation at Capri Pub."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJD9oTdMevYQ0RzLo6topByaw"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJD9oTdMevYQ0RzLo6topByaw"
     },
     footer: {
       copyright: "© 2025 gastronom.io - All rights reserved."

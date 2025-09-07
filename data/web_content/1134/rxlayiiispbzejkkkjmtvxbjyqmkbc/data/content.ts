@@ -39,17 +39,17 @@ export const content: { [key in Language]: Content } = {
       addressValue: "Carrer Sant Josep, 39, 46610 Guadassuar Valencia",
       openingHours: "Horario de Apertura",
       hours: {
-        lunes: "Lunes: nan",
-        martes: "Martes: nan",
-        miercoles: "Miercoles: nan",
-        jueves: "Jueves: nan",
-        viernes: "Viernes: nan",
-        sabado: "Sabado: nan",
-        domingo: "Domingo: nan"
+        lunes: "Lunes: ",
+        martes: "Martes: ",
+        miercoles: "Miercoles: ",
+        jueves: "Jueves: ",
+        viernes: "Viernes: ",
+        sabado: "Sabado: ",
+        domingo: "Domingo: "
       },
       phone: "Teléfono",
-      phoneValue: nan,
-      whatsappNumber: nan,
+      phoneValue: "",
+      whatsappNumber: "",
       email: "Correo Electrónico",
       emailValue: "reservas@gastronom.io",
       reservation: {
@@ -57,7 +57,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Reservar por WhatsApp",
         whatsappMessage: "Hola, me gustaría hacer una reserva en Gica."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJk1BkBACvYQ0RqMlEJq5faoI"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJk1BkBACvYQ0RqMlEJq5faoI"
     },
     footer: {
       copyright: "© 2024 Gica. Todos los derechos reservados."
@@ -101,17 +101,17 @@ export const content: { [key in Language]: Content } = {
       addressValue: "Carrer Sant Josep, 39, 46610 Guadassuar Valencia",
       openingHours: "Opening Hours",
       hours: {
-        lunes: "Monday: nan",
-        martes: "Tuesday: nan",
-        miercoles: "Wednesday: nan",
-        jueves: "Thursday: nan",
-        viernes: "Friday: nan",
-        sabado: "Saturday: nan",
-        domingo: "Sunday: nan"
+        lunes: "Monday: ",
+        martes: "Tuesday: ",
+        miercoles: "Wednesday: ",
+        jueves: "Thursday: ",
+        viernes: "Friday: ",
+        sabado: "Saturday: ",
+        domingo: "Sunday: "
       },
       phone: "Phone",
-      phoneValue: nan,
-      whatsappNumber: nan,
+      phoneValue: "",
+      whatsappNumber: "",
       email: "Email",
       emailValue: "reservas@gastronom.io",
       reservation: {
@@ -119,7 +119,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Book via WhatsApp",
         whatsappMessage: "Hello, I would like to make a reservation at Gica."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJk1BkBACvYQ0RqMlEJq5faoI"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJk1BkBACvYQ0RqMlEJq5faoI"
     },
     footer: {
       copyright: "© 2025 gastronom.io - All rights reserved."

@@ -57,7 +57,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Reservar por WhatsApp",
         whatsappMessage: "Hola, me gustaría hacer una reserva en ENTREFOGONS GUADASUAR."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJV-p2wq-vYQ0RoaWrJRxw7Rw"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJV-p2wq-vYQ0RoaWrJRxw7Rw"
     },
     footer: {
       copyright: "© 2024 ENTREFOGONS GUADASUAR. Todos los derechos reservados."
@@ -119,7 +119,7 @@ export const content: { [key in Language]: Content } = {
         submit: "Book via WhatsApp",
         whatsappMessage: "Hello, I would like to make a reservation at ENTREFOGONS GUADASUAR."
       },
-      embed_url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyDm6MhtGVlGk0laRqDIqYN0dWQwAogjBJs&q=place_id:ChIJV-p2wq-vYQ0RoaWrJRxw7Rw"
+      embed_url: "https://www.google.com/maps/embed/v1/place?key=&q=place_id:ChIJV-p2wq-vYQ0RoaWrJRxw7Rw"
     },
     footer: {
       copyright: "© 2025 gastronom.io - All rights reserved."
