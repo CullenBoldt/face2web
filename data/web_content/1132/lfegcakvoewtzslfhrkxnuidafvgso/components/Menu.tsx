@@ -11,7 +11,7 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ content, language }) => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const categories = ['all', 'Entrante', 'Principales', 'Postres', 'Bebidas'];
+  const categories = ['all', 'appetizers', 'mainCourses', 'desserts', 'drinks'];
 
   const getCategoryTitle = (key: string): string => {
       return content.categories[key as keyof typeof content.categories] || key;

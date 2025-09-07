@@ -14,7 +14,7 @@ export const menuData: MenuItem[] = [
   gl: "description 1",
                         },
                         price: "€0.99",
-                        category: "Entrante",
+                        category: "appetizers",
                         allergens: "no",
                       },
   {
@@ -29,7 +29,7 @@ export const menuData: MenuItem[] = [
   gl: "description 2",
                         },
                         price: "€0.99",
-                        category: "Entrante",
+                        category: "appetizers",
                         allergens: "si ",
                       },
   {
@@ -44,7 +44,7 @@ export const menuData: MenuItem[] = [
   gl: "description 3",
                         },
                         price: "€0.99",
-                        category: "Entrante",
+                        category: "appetizers",
                         allergens: "no ",
                       },
   // Main Courses
@@ -60,7 +60,7 @@ export const menuData: MenuItem[] = [
   gl: "description 12",
                         },
                         price: "€0.99",
-                        category: "Principales",
+                        category: "mainCourses",
                         allergens: "no",
                       },
   {
@@ -75,7 +75,7 @@ export const menuData: MenuItem[] = [
   gl: "description 13",
                         },
                         price: "€0.99",
-                        category: "Principales",
+                        category: "mainCourses",
                         allergens: "si ",
                       },
   {
@@ -90,7 +90,7 @@ export const menuData: MenuItem[] = [
   gl: "description 14",
                         },
                         price: "€0.99",
-                        category: "Principales",
+                        category: "mainCourses",
                         allergens: "no ",
                       },
   {
@@ -105,7 +105,7 @@ export const menuData: MenuItem[] = [
   gl: "description 15",
                         },
                         price: "€0.99",
-                        category: "Principales",
+                        category: "mainCourses",
                         allergens: "no",
                       },
   {
@@ -120,7 +120,7 @@ export const menuData: MenuItem[] = [
   gl: "description 16",
                         },
                         price: "€0.99",
-                        category: "Principales",
+                        category: "mainCourses",
                         allergens: "si ",
                       },
   // Desserts
@@ -136,7 +136,7 @@ export const menuData: MenuItem[] = [
   gl: "description 17",
                         },
                         price: "€0.99",
-                        category: "Postres",
+                        category: "desserts",
                         allergens: "no ",
                       },
   {
@@ -151,7 +151,7 @@ export const menuData: MenuItem[] = [
   gl: "description 18",
                         },
                         price: "€0.99",
-                        category: "Postres",
+                        category: "desserts",
                         allergens: "no",
                       },
   // Drinks
@@ -167,7 +167,7 @@ export const menuData: MenuItem[] = [
   gl: "description 19",
                         },
                         price: "€0.99",
-                        category: "Bebidas",
+                        category: "drinks",
                         allergens: "si ",
                       },
   {
@@ -182,7 +182,7 @@ export const menuData: MenuItem[] = [
   gl: "description 19",
                         },
                         price: "€0.99",
-                        category: "Bebidas",
+                        category: "drinks",
                         allergens: "no ",
                       },
 ];

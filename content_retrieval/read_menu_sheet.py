@@ -37,6 +37,13 @@ def save_menu_ts(df: pd.DataFrame, cid_row):
         "Bebidas": "// Drinks",
     }
 
+    category_mapping = {
+        "Entrante": "appetizers",
+        "Principales": "mainCourses",
+        "Postres": "desserts",
+        "Bebidas": "drinks"
+    }
+
     output_lines = [
         "import { MenuItem } from '../types';",
         "",
@@ -71,7 +78,7 @@ def save_menu_ts(df: pd.DataFrame, cid_row):
                           {chr(10).join(desc_lines)}
                         }},
                         price: "€{row['Precio']}",
-                        category: "{categoria}",
+                        category: "{category_mapping[categoria]}",
                         allergens: "{row['Alergenos']}",
                       }},"""
             output_lines.append(item)

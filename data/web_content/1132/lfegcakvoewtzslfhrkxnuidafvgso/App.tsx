@@ -11,7 +11,8 @@ import { content } from './data/content';
 import { Language } from './types';
 
 const App: React.FC = () => {
-  const [language, setLanguage] = useState<Language>('es');
+  const firstLanguageKey = Object.keys(content)[0] as Language;
+  const [language, setLanguage] = useState<Language>(firstLanguageKey);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const currentContent = content[language];
 
