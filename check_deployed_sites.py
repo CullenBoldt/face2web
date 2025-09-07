@@ -71,19 +71,28 @@ def update_readme():
     csv_path = service_overview_path()
     readme_path = "README.md"
 
-    # Load CSV
     df = pd.read_csv(csv_path)
 
-    # Convert to Markdown table
+    # Ensure columns exist
+    for col in ["name", "cid", "url", "place_id"]:
+        if col not in df.columns:
+            df[col] = ""
+
+    # Make 'cid' a clickable Markdown link using 'url'
+    df['cid'] = df.apply(lambda row: f"[{row['cid']}]({row['url']})" if row['cid'] else "", axis=1)
+
+    # Select only the columns we want in the desired order
+    df = df[['name', 'cid', 'place_id']]
+
+    # Convert to Markdown
     md_table = df.to_markdown(index=False)
 
-    # Optional: wrap with a section header
+    # Wrap with a section header
     md_content = f"## Deployment Log\n\n{md_table}\n"
 
-    # Write to README.md (overwrite or append as needed)
+    # Write to README.md
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(md_content)
-
 
 
 def authenticate(driver):
