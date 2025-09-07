@@ -1,0 +1,37 @@
+steps:
+  # 1. Construir la imagen del contenedor
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${_SHORT_SHA}'
+      - '.'
+
+  # 2. Subir la imagen a Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${_SHORT_SHA}'
+
+  # 3. Desplegar la imagen en Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/google-cloud-cli'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${_SHORT_SHA}'
+      - '--region=${_REGION}'
+      - '--allow-unauthenticated' # Permite que cualquiera pueda acceder a la URL
+      - '--platform=managed'
+
+# Guardar la imagen en Artifact Registry
+images:
+  - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${_SHORT_SHA}'
+
+# Sustituciones para hacer el script reutilizable
+substitutions:
+  _SERVICE_NAME: 'restaurante-sajoy1'
+  _REPOSITORY: 'restaurante-sajoy-repo'
+  _REGION: 'europe-west1' # <-- ¡IMPORTANTE! Cambia esto a tu región más cercana
+  _SHORT_SHA: 'latest'
