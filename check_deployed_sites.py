@@ -65,6 +65,25 @@ def create_services_overview():
 
     output_df.to_csv(service_overview_path())
 
+def update_readme():
+
+    # Path to your CSV
+    csv_path = service_overview_path()
+    readme_path = "README.md"
+
+    # Load CSV
+    df = pd.read_csv(csv_path)
+
+    # Convert to Markdown table
+    md_table = df.to_markdown(index=False)
+
+    # Optional: wrap with a section header
+    md_content = f"## Deployment Log\n\n{md_table}\n"
+
+    # Write to README.md (overwrite or append as needed)
+    with open(readme_path, "w", encoding="utf-8") as f:
+        f.write(md_content)
+
 
 
 def authenticate(driver):
@@ -146,6 +165,7 @@ def check_deployed_services(headless=True):
 def main():
     create_services_overview()
     check_deployed_services()
+    update_readme()
 
 if __name__ == "__main__":
     main()
