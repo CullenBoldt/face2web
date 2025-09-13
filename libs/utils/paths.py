@@ -28,14 +28,14 @@ def get_places_api_key_path():
 def get_geocode_api_key_path():
     return Path('secrets/geocode_api_key')
 
-def get_places_dir():
-    return Path("data/places")
+def get_municipios_dir():
+    return Path("data/municipios")
 
-def get_places_raw_dir():
-    return Path(f"{get_places_dir()}/raw/")
+def get_municipios_raw_dir():
+    return Path(f"{get_municipios_dir()}/raw/")
 
-def get_places_table_path():
-    return Path(f"{get_places_dir()}/combined_places.csv")
+def get_municipios_table_path():
+    return Path(f"{get_municipios_dir()}/combined_municipios.csv")
 
 def get_restaurants_dir():
     return Path("data/restaurants/")
@@ -45,6 +45,9 @@ def get_restaurant_path(municipio_id, municipio, provincia):
 
 def get_cid_output_dir(municipio_id, cid):
     return Path(f"data/web_content/{municipio_id}/{cid}")
+
+def get_index_path(municipio_id, cid):
+    return Path(f"{get_cid_output_dir(municipio_id, cid)}/index.html")
 
 def get_cid_header_path(municipio_id, cid):
     return Path(f"{get_cid_output_dir(municipio_id, cid)}/components/Header.tsx")
@@ -88,12 +91,23 @@ def service_overview_path():
 def service_with_status_overview_path():
     return Path("data/services/service_with_status_overview.csv")
 
-
 def get_website_password_path():
     return Path("secrets/website_password")
 
 def get_embed_map_key_path():
     return Path("secrets/embed_map_key")
 
+def get_gen_ai_key_path():
+    return Path("secrets/gen_ai_key")
+
 def get_customer_csv():
     return Path("data/marketing/customer_info.csv")
+
+def get_description_template_path(place_class):
+    return Path(f"templates/profiles/{place_class}.json")
+
+def get_service_account_json():
+    return Path("secrets/cellular-nuance-468913-d5-cd335058c8ea.json")
+
+def get_themes_path():
+    return Path("templates/themes.json")
