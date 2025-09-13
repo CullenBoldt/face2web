@@ -2,13 +2,13 @@ import os
 import pandas as pd
 from pathlib import Path
 
-from libs.utils.paths import get_places_raw_dir, get_places_table_path
+from libs.utils.paths import get_municipios_raw_dir, get_municipios_table_path
 
 
-def create_places_table():
+def create_municipios_table():
 
     # Directory containing CSVs
-    input_dir = get_places_raw_dir()
+    input_dir = get_municipios_raw_dir()
 
     all_dfs = []
 
@@ -53,18 +53,18 @@ def create_places_table():
 
         print(combined_df['Population'].sum())
 
-        combined_df[["Name", "provincia", "Population", "min_lang"]].rename({"Name":"municipio", "Population": "poblacion"}, axis=1).sort_values(by='poblacion', ascending =False).reset_index(drop=True).to_csv(get_places_table_path(), index_label="municipio_id")
+        combined_df[["Name", "provincia", "Population", "min_lang"]].rename({"Name":"municipio", "Population": "poblacion"}, axis=1).sort_values(by='poblacion', ascending =False).reset_index(drop=True).to_csv(get_municipios_table_path(), index_label="municipio_id")
         print(f"\n📊 Combined DataFrame shape: {combined_df.shape}")
     else:
         print("⚠️ No CSV files found in places/raw")
 
 
-def load_places_table():
-    return pd.read_csv(get_places_table_path())
+def load_municipios_table():
+    return pd.read_csv(get_municipios_table_path())
 
 
 def main():
-    create_places_table()
+    create_municipios_table()
 
 if __name__ == "__main__":
     main()

@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
-from content_retrieval.create_places_table import load_places_table
+from content_retrieval.create_municipios_table import load_municipios_table
 from libs.utils.paths import get_restaurant_path, get_customer_csv
 
 
@@ -77,11 +77,11 @@ def start_driver(headless):
 
 def scrape_customer_data(municipio_id, headless):
 
-    places = load_places_table()
+    municipios = load_municipios_table()
 
-    municipio = places.iloc[municipio_id]['municipio']
-    provincia = places.iloc[municipio_id]['provincia']
-    municipio_id = places.iloc[municipio_id]['municipio_id']
+    municipio = municipios.iloc[municipio_id]['municipio']
+    provincia = municipios.iloc[municipio_id]['provincia']
+    municipio_id = municipios.iloc[municipio_id]['municipio_id']
 
     restaurants = pd.read_csv(get_restaurant_path(municipio_id, municipio, provincia))
 

@@ -19,10 +19,10 @@ HEADERS = {
 
 
 # Ensure output directory exists
-os.makedirs("../data/places/raw", exist_ok=True)
+os.makedirs("../data/municipios/raw", exist_ok=True)
 
 # Read the input CSV
-input_file = "places/wiki_provinces.csv"
+input_file = "municipios/wiki_provinces.csv"
 df = pd.read_csv(input_file)
 
 for _, row in df.iterrows():
@@ -49,7 +49,7 @@ for _, row in df.iterrows():
         df_table = pd.read_html(str(table))[0]
 
         # Save to CSV
-        output_file = f"places/raw/{provincia.replace(' ', "_")}.csv"
+        output_file = f"municipios/raw/{provincia.replace(' ', "_")}.csv"
         df_table.to_csv(output_file, index=False)
         print(f"✅ Saved: {output_file}")
 
