@@ -1,0 +1,10 @@
+{
+  "description_template" : "At _____, we pride ourselves on creating a warm and inviting space where coffee and community come first. Our café is dedicated to serving _______ made with care and quality ingredients.\n\nLocated in the _______, our café is a cozy meeting place for friends, students, and families alike. Every cup and every bite is prepared to bring comfort, tradition, and a touch of local flavor to your day.",
+  "colors": {
+              "background": "#111827",
+              "primary": "#F3F4F6",
+              "secondary": "#9CA3AF",
+              "accent": "#D4AF37",
+              "accent-hover": "#B89B32"
+            }
+}

@@ -1,0 +1,10 @@
+{
+  "description_template" : "At _____, we take pride in creating an atmosphere where good drinks and great company come together. Our bar is dedicated to serving carefully crafted beverages that showcase both tradition and innovation.\n\nLocated in _______, our bar is a gathering place for friends and new connections alike. Every drink is selected or prepared with care, ensuring each visit is memorable, relaxed, and full of flavor.",
+  "colors": {
+              "background": "#111827",
+              "primary": "#F3F4F6",
+              "secondary": "#9CA3AF",
+              "accent": "#D4AF37",
+              "accent-hover": "#B89B32"
+            }
+}

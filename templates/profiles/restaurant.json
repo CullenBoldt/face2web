@@ -1,0 +1,10 @@
+{
+  "description_template" : "At _____, we pride ourselves on offering a culinary experience based on tradition and local products. We are dedicated to bringing the authentic flavors of ______ cuisine to your table.\n\nLocated in the _______ our restaurant is a meeting place for friends and families. Each dish is prepared with care, using recipes passed down from generation to generation, ensuring a homemade and memorable meal.",
+  "colors": {
+              "background": "#111827",
+              "primary": "#F3F4F6",
+              "secondary": "#9CA3AF",
+              "accent": "#D4AF37",
+              "accent-hover": "#B89B32"
+            }
+}

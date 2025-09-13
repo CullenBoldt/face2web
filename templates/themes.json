@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Default",
+    "colors": {
+      "background": "#111827",
+      "primary": "#F3F4F6",
+      "secondary": "#9CA3AF",
+      "accent": "#D4AF37",
+      "accent-hover": "#B89B32"
+    }
+  },
+  {
+    "name": "Crimson Night",
+    "colors": {
+      "background": "#1E1E2F",
+      "primary": "#EAEAEA",
+      "secondary": "#A1A1B3",
+      "accent": "#FF6B6B",
+      "accent-hover": "#E55A5A"
+    }
+  },
+  {
+    "name": "Ocean Dusk",
+    "colors": {
+      "background": "#0D1B2A",
+      "primary": "#E0E1DD",
+      "secondary": "#778DA9",
+      "accent": "#F4A261",
+      "accent-hover": "#E07A5F"
+    }
+  },
+  {
+    "name": "Golden Slate",
+    "colors": {
+      "background": "#2C2C34",
+      "primary": "#F8F9FA",
+      "secondary": "#ADB5BD",
+      "accent": "#FFD700",
+      "accent-hover": "#C5A200"
+    }
+  },
+  {
+    "name": "Emerald Glow",
+    "colors": {
+      "background": "#1B1B1B",
+      "primary": "#F5F5F5",
+      "secondary": "#AAAAAA",
+      "accent": "#4ADE80",
+      "accent-hover": "#22C55E"
+    }
+  },
+  {
+    "name": "Skyline",
+    "colors": {
+      "background": "#2A2A40",
+      "primary": "#F0F0F0",
+      "secondary": "#9CA3AF",
+      "accent": "#38BDF8",
+      "accent-hover": "#0EA5E9"
+    }
+  },
+  {
+    "name": "Solar Flare",
+    "colors": {
+      "background": "#101820",
+      "primary": "#FEE715",
+      "secondary": "#D6D6D6",
+      "accent": "#FF4C29",
+      "accent-hover": "#CC3B21"
+    }
+  },
+  {
+    "name": "Neon Purple",
+    "colors": {
+      "background": "#121212",
+      "primary": "#EDEDED",
+      "secondary": "#B0B0B0",
+      "accent": "#BB86FC",
+      "accent-hover": "#9B6BDB"
+    }
+  },
+  {
+    "name": "Forest Breeze",
+    "colors": {
+      "background": "#1F2937",
+      "primary": "#F3F4F6",
+      "secondary": "#9CA3AF",
+      "accent": "#10B981",
+      "accent-hover": "#059669"
+    }
+  },
+  {
+    "name": "Indigo Night",
+    "colors": {
+      "background": "#0F172A",
+      "primary": "#F1F5F9",
+      "secondary": "#94A3B8",
+      "accent": "#6366F1",
+      "accent-hover": "#4F46E5"
+    }
+  }
+]
